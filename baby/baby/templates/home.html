@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Juan David
+{% endblock %}
+
+
+{% block slide %}
+
+
+	<div class='carousel slide over-something' id='homepage-carousel'>
+		<div class='carousel-inner slider-w'>
+			<div class='active item'>
+				<div class='container'>
+					<h1 class='slider-header'>
+					<strong>Paso 1.</strong> Selecciona de la lista el regalo que le quieres llevar a Juan David.</h1>
+					<div class='slider-browsers-w clearfix'>
+					<div class='slider-browser slider-browser-left hidden-phone' data-position-bottom='-8%'>
+						<img alt="Browser-window-1" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-1.png" />
+					</div>
+					<div class='slider-browser slider-browser-center' data-position-bottom='-9%'>
+						<img alt="Browser-window-2" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-2.png" />
+					</div>
+					<div class='slider-browser slider-browser-right hidden-phone' data-position-bottom='-8%'>
+						<img alt="Browser-window-3" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-3.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class='item'>
+			<div class='container'>
+				<h1 class='slider-header'>
+				<strong>PASO 2.</strong> Indica que llevarás tu regalo.</h1>
+				<h2 class='slider-sub-header'>Marca el regalo que llevarás para que no se repita.</h2>
+				<div class='row zoomed-browsers-w'>
+					<div class='span4'>
+						<div class='zoomed-browser'>
+							<img alt="Browser-window-1" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-1.png" />
+						</div>
+					</div>
+					<div class='span4'>
+						<div class='zoomed-browser hidden-phone'>
+							<img alt="Browser-window-2" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-2.png" />
+						</div>
+					</div>
+					<div class='span4'>
+						<div class='zoomed-browser hidden-phone'>
+							<img alt="Browser-window-3" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-3.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='item'>
+			<div class='container'>
+				<h1 class='slider-header'>
+				<strong>PASO 3.</strong> Asiste al baby shower.</h1>
+				<h2 class='slider-sub-header'>Estaremos felices de recibirte.</h2>
+				<div class='row zoomed-browsers-w'>
+					<div class='span4'>
+						<div class='zoomed-browser'>
+							<img alt="Browser-window-1" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-1.png" />
+						</div>
+					</div>
+					<div class='span4'>
+						<div class='zoomed-browser hidden-phone'>
+							<img alt="Browser-window-2" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-2.png" />
+						</div>
+					</div>
+					<div class='span4'>
+						<div class='zoomed-browser hidden-phone'>
+							<img alt="Browser-window-3" src="{{STATIC_URL}}assets/theme_venera/photos/browser-window-3.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<a class='carousel-control left' data-slide='prev' href='#homepage-carousel'>
+<i class='icon-chevron-left'></i></a>
+<a class='carousel-control right' data-slide='next' href='#homepage-carousel'>
+<i class='icon-chevron-right'></i></a>
+</div>
+
+{% endblock %}
+{% block content %}
+
+
+<section class='section-wrapper stripped'>
+
+<div class='container'>
+	<div class='row'>
+		<div class='span12'>
+			<h3 class='section-header'>Lista de regalos</h3>
+		</div>
+
+		{% for regalo in regalos %}
+		<div class='span3'>
+			<div class='white-card recent-post clearfix'>
+				<h5 class='recent-post-header'>
+				<a href="single_post.html">{{regalo.titulo}}</a>
+				</h5>
+				<div class='post-info clearfix'>
+					
+					<div class='pull-right'>
+						<a href="#" class="btn {% if regalo.asignado == True %}btn-danger{% else %} btn-success {% endif %}">
+							<i class='icon-heart'></i>
+							{% if regalo.asignado == True %}Asingado
+							{% else %} Disponible {% endif %}
+							</a>
+					</div>
+				</div>
+				{{regalo.imagen|safe}}
+				
+				<p class='post-content separated'>{{regalo.contenido}}</p>
+				<a href="/regalo/{{regalo.id}}" class="btn btn-primary btn-extra pull-right">Quiero llevar este regalo &gt;</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+</section>
+			
+{% endblock %}
+
+
+{% block donde_comprar %}
+<section class='section-wrapper stripped'>
+	<div class='container'>
+		<div class='row clients-w'>
+			<div class='span12'>
+				<h3 class='section-header'>¿Donde Comprar?</h3>
+				<h4 >Puedes comprar tu regalo en la tienda de tu preferencia o en los almacenes donde te indicamos preguntando por la lista de regalos de Angie Contreras</h4>
+			</div>
+			<div class='span3'>
+				<div class='white-card'>
+					<img alt="" src="http://titanplaza.com/web/wp-content/uploads/et_temp/599922logo_falabella-11468_296x156.jpg" />
+				</div>
+			</div>
+			<div class='span3'>
+				<div class='white-card'>
+					<img alt="Client-2" src="http://www.bulevar.com.co/images/minisites/Tienda_por_Dptos//PEPEGANGA859.JPG" />
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+{% endblock %}

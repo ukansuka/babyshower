@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Juan David
+{% endblock %}
+
+{% block content %}
+
+<section class='section-wrapper contact-page-w'>
+	<div class='container'>
+		<h3 class='section-header'>Gracias por tu regalo</h3>
+		<div class='row'>
+			<div class='span4'>
+				<div class="white-card">
+					<h3>Tu regalo seleccionado es: <br>{{regalo.titulo}}</h3>
+					
+					{{regalo.imagen|safe}}
+
+					<p>{{regalo.contenido}}</p>
+				</div>
+			</div>
+			<div class='span8'>
+				<div class='white-card extra-padding'>
+					<form class='form-transparent no-margin-bottom' id='form-add-comment' method="POST">
+						{% csrf_token%}
+					<fieldset>
+					<div class='row-fluid'>
+						<div class='span12'>
+							<legend>Por favor completa esta información</legend>
+							<div class='controls controls-row'>
+								<input class='search-input span6' placeholder='Tu nombre' type='text' name="nombre">
+								<input class='search-input span6' placeholder='Tu email' type='text' name="email">
+							</div>
+							<div class='controls controls-row'>
+								<textarea class='span12' placeholder='Tu mensaje' rows='6' name="mensaje"></textarea>
+							</div>
+							<input type="hidden" name="regalo" value="{{regalo.titulo}}">
+							<div class='form-actions'>
+								<button class='btn btn-success' type="submit">Quiero llevar este regalo</button>
+							</div>
+						</div>
+					</div>
+					</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+		<h3 class='section-header'>Recuerda que mi baby shower es el 05 de octubre de 2013 a las 3:30 pm</h3>
+		<div class='row'>
+			<div class='span12'>
+				<div class='map-w'>
+					<iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Madison+Square+Garden,+Penn+Plaza,+New+York,+NY&amp;aq=0&amp;oq=madisson+s&amp;sll=40.697488,-73.979681&amp;sspn=0.603884,1.355438&amp;ie=UTF8&amp;hq=Madison+Square+Garden,&amp;hnear=Penn+Plaza,+New+York&amp;t=m&amp;ll=40.750248,-73.992362&amp;spn=0.005689,0.002124&amp;z=16&amp;output=embed"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+	
+{% endblock %}
