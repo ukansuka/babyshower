@@ -21,7 +21,24 @@ def one_regalo(request, idregalo):
 		contenido += 'Regalo: ' + regalo
 		correo = EmailMessage(titulo, contenido, to=['jdaarevalo@gmail.com'])
 		correo.send()
-		return HttpResponseRedirect('/mensajerecibido')
+
+		from django.core.mail import EmailMultiAlternatives
+		from django.template.loader import get_template
+		from django.template import Context
+			
+		plaintext = get_template('regalo_seleccionado.txt')
+		htmly     = get_template('regalo_seleccionado.html')
+		regalo_s = Regalo.objects.get(id=idregalo)
+		d = Context({ 'regalo':regalo_s})
+
+		subject, from_email, to = 'Regalo para Juan David', 'info@ukanbook.com', email
+		text_content = plaintext.render(d)
+		html_content = htmly.render(d)
+		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+		msg.attach_alternative(html_content, "text/html")
+		msg.send()
+
+		return HttpResponseRedirect('/mensajerecibido/%s' % (idregalo))
 
     return render_to_response('regalo.html', {'regalo':regalo,},context_instance=RequestContext(request))
 
@@ -32,6 +49,8 @@ def home(request):
     return render_to_response(
         "home.html", {'regalos':regalos,},context_instance=RequestContext(request))
 
-def estudiantes(request):
-	return render_to_response('estudiantes.html',context_instance=RequestContext(request))
+def mensajerecibido(request, idregalo):
+	regalo = Regalo.objects.get(id=idregalo)
+
+	return render_to_response('mensajerecibido.html', {'regalo':regalo,}, context_instance=RequestContext(request))
 

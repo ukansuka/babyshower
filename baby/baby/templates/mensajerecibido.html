@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Juan David
+{% endblock %}
+
+{% block slide %}
+{% endblock %}
+
+{% block content %}
+<section class="section-wrapper about-page-w">
+	<div class="container">
+		<h1 class="section-main-header alert alert-info">Gracias por seleccionar tu regalo. Estaré muy feliz de que asistas a mi baby shower.  Att: Juan David</h1>
+		<div class="row row-separated">
+			<div class="span7">
+				<h3 class="section-header">Tu regalo seleccionado</h3>
+				<p class="section-paragraph">{{regalo.contenido}}</p>
+			</div>
+			<div class="span5">
+				{{regalo.imagen|safe}}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

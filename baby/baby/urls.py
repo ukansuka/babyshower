@@ -23,7 +23,6 @@ urlpatterns = patterns('',
     url(r'^home/$','lista.views.home'),
     url(r'^regalo/$','lista.views.one_regalo'),
     url(r'^regalo/(\d+)$','lista.views.one_regalo'),
-    url(r'^estudiantes/$','lista.views.estudiantes'),
-
+    url(r'^mensajerecibido/(\d+)$','lista.views.mensajerecibido'),
 
 )
